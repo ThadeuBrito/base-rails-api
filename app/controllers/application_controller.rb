@@ -5,6 +5,10 @@ class ApplicationController < ActionController::API
 
   respond_to :json
 
+  def body_params
+    body_params = ActionController::Parameters.new(request.request_parameters)
+  end
+
   ##
   # User Authentication
   # Authenticates the user with OAuth2 Resource Owner Password Credentials Grant
