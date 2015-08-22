@@ -47,13 +47,6 @@ GEM
     coderay (1.1.0)
     daemons (1.2.3)
     debug_inspector (0.0.2)
-    devise (3.4.1)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      responders
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
     erubis (2.7.0)
     eventmachine (1.0.8)
     faker (1.5.0)
@@ -72,7 +65,6 @@ GEM
     minitest (5.8.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    orm_adapter (0.5.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -110,8 +102,6 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    responders (2.1.0)
-      railties (>= 4.2.0, < 5)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -132,8 +122,6 @@ GEM
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    warden (1.2.3)
-      rack (>= 1.0)
     web-console (2.2.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -145,8 +133,8 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.8.3)
+  bcrypt
   byebug
-  devise (~> 3.4.1)
   faker
   pry
   rails (= 4.2.0)

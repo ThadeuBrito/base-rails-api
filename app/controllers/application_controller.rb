@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_user_from_token!
-  respond_to :json
 
   def body_params
     body_params = ActionController::Parameters.new(request.request_parameters)

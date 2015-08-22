@@ -10,9 +10,13 @@ class AuthsController < ApplicationController
 
   def register
     @email = user_params[:email]
-    @user  = User.create(user_params)
-
-    # render json: {notice: 'Regited'}, status: 500
+    @user  = User.new(user_params)
+    
+    if @user.save
+      render json: @user, status: :created, location: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   def forgot
