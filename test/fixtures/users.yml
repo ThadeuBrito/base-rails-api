@@ -3,7 +3,9 @@
 one:
   email: MyString
   encrypted_password: MyString
+  access_token: MyString
 
 two:
   email: MyString
   encrypted_password: MyString
+  access_token: MyString

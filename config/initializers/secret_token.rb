@@ -16,4 +16,4 @@
 # Using secret_token for rails3 compatibility. Change to secret_key_base
 # to avoid deprecation warning.
 # Can be safely removed in a rails3 api-only application.
-Caomunitario::Application.config.secret_token = 'cc338d1e0363ceb7d571444c852393c6b1c26830dbc928797a817bca08e947b93d09fa6758ef8666c70e045e4cea68cefdbabefe552a8090c3998b093237a449'
+Caomunitario::Application.config.secret_token = '49fafed1ee60f8436bd45974e4db123c40575874c86be536275be2615e0c0f74882cd008c057ccfc1fdb0236a48bec0a992d18bb20f7866be6ec13b15ac13b27'
