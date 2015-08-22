@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     @password
   end
 
+  def valid_password?(password_to_validate)
+    BCrypt::Password.new(encrypted_password) == password_to_validate
+  end
+
   private
   def update_access_token!
     self.access_token = Digest::SHA1.hexdigest("--#{rand(10000)}--#{Time.now}--")[0,40]

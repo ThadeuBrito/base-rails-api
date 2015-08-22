@@ -1,28 +1,16 @@
 class AuthsController < ApplicationController
-  # skip_before_action :authenticate_user_from_token!, only: [:login, :register]
+  skip_before_action :authenticate_user_from_token!, only: [:login, :register]
 
   def login
-    # @user = User.find_by(email: params[:email])
-    # return invalid_login_attempt unless @user
-    #
-    # if @user.valid_password?(params[:password])
-    #   sign_in :user, @user
-    #   render json: @user, serializer: SessionSerializer, root: nil
-    # else
-    #   invalid_login_attempt
-    # end
-    render json: {notice: 'logado'}, status: 500
+    @user = User.find_by(email: params[:email])
+    if @user.valid_password?(user_params[:password])
+      render json: {notice: "#{@user.email} logado", token: @user.access_token}, status: 200
+    end
   end
 
   def register
     @email = user_params[:email]
     @user  = User.create(user_params)
-    # @user  = User.find_by_email(@email)
-    # if @user
-    #   render json: {notice: 'email already used'}
-    # else
-
-
 
     # render json: {notice: 'Regited'}, status: 500
   end
