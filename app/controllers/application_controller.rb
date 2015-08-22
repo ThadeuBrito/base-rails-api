@@ -6,6 +6,10 @@ class ApplicationController < ActionController::API
     body_params = ActionController::Parameters.new(request.request_parameters)
   end
 
+  def current_user
+    User.find_by_access_token(request.headers['Authorization'])
+  end
+
   # User Authentication
   # Authenticates the user with OAuth2 Resource Owner Password Credentials Grant
   def authenticate_user_from_token!
