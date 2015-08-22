@@ -1,21 +1,26 @@
+require 'bcrypt'
+require 'digest/sha1'
+
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable
-  # :recoverable, :rememberable, :trackable, :validatable
 
-  # devise :database_authenticatable, :recoverable, :validatable
+  before_create :update_access_token!
 
-  after_create :update_access_token!
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true, confirmation: true
+  validates :password_confirmation, presence: true
 
-  # validates :username, presence: true
-  validates :email, presence: true
+  def password=(new_password)
+    @password = new_password
+    self.encrypted_password = BCrypt::Password.create(@password)
+  end
+
+  def password
+    @password
+  end
 
   private
-
   def update_access_token!
-    self.access_token = "#{self.id}:#{Devise.friendly_token}"
-    save
+    self.access_token = Digest::SHA1.hexdigest("--#{rand(10000)}--#{Time.now}--")[0,40]
   end
 
 end
