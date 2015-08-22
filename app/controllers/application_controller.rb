@@ -1,12 +1,13 @@
 class ApplicationController < ActionController::API
+  include CanCan::ControllerAdditions
   before_action :authenticate_user_from_token!
 
   def body_params
     body_params = ActionController::Parameters.new(request.request_parameters)
   end
 
-  def current_user
-    User.find_by_access_token(request.headers['Authorization'])
+  def current_ability
+    @current_ability ||= Ability.new(current_user)
   end
 
   # User Authentication
@@ -21,11 +22,19 @@ class ApplicationController < ActionController::API
     end
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render json: {nothing: true}, status: 403 #forbidden
+  end
+
   private
 
+  def current_user
+    User.find_by_access_token(request.headers['Authorization'])
+  end
+
   def authenticate_with_auth_token auth_token
-    current_user = User.find_by_access_token(auth_token)
-    authentication_error unless current_user
+    user = User.find_by_access_token(auth_token)
+    authentication_error unless user
   end
 
   # Authentication Failure

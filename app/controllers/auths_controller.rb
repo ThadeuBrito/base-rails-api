@@ -4,7 +4,7 @@ class AuthsController < ApplicationController
   def login
     @user = User.find_by(email: params[:email])
     if @user.valid_password?(user_params[:password])
-      render json: {notice: "#{@user.email} logado", token: @user.access_token}, status: 200
+      render json: {user: @user, current_user: current_user}, status: 200
     end
   end
 
@@ -20,7 +20,7 @@ class AuthsController < ApplicationController
   end
 
   def forgot
-    render json: {notice: 'Regited'}, status: 500
+    render json: {notice: 'Regited', current_user: current_user}, status: 500
   end
 
   def update
