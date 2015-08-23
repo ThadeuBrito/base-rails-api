@@ -30,6 +30,6 @@ class AuthsController < ApplicationController
   private
 
   def user_params
-    body_params.permit(:email, :password, :password_confirmation)
+    body_params.permit(:email, :first_name, :last_name, :password, :password_confirmation)
   end
 end
