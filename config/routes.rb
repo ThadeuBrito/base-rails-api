@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   put  "/auth/update", to: "auths#update"
 
   #USER
-  resources :users, except: [:new, :edit]
+  resources :users, except: [:new, :create, :edit]
 
 end
